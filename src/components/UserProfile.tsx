@@ -1,9 +1,10 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import RewardSystem from './RewardSystem';
 
 interface UserStats {
   level: number;
@@ -74,63 +75,80 @@ const UserProfile = () => {
         </CardContent>
       </Card>
 
-      {/* Achievements */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <span>🏆</span>
-            Errungenschaften
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-2 gap-3">
-            {userStats.achievements.map((achievement, index) => (
-              <div key={index} className="flex items-center gap-3 p-3 bg-questGreen-50 rounded-lg border border-questGreen-200">
-                <div className="text-2xl">🎖️</div>
-                <div>
-                  <div className="font-semibold text-sm text-questGreen-800">{achievement}</div>
-                  <div className="text-xs text-questGreen-600">Erhalten</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
+      {/* Tabs for Profile Sections */}
+      <Tabs defaultValue="overview" className="w-full">
+        <TabsList className="grid w-full grid-cols-3">
+          <TabsTrigger value="overview">Übersicht</TabsTrigger>
+          <TabsTrigger value="rewards">Belohnungen</TabsTrigger>
+          <TabsTrigger value="achievements">Erfolge</TabsTrigger>
+        </TabsList>
 
-      {/* Recent Quests */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <span>📋</span>
-            Letzte Quests
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-3">
-            {recentQuests.map((quest, index) => (
-              <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                <div>
-                  <div className="font-semibold">{quest.name}</div>
-                  <div className="text-sm text-gray-600">vor {quest.date}</div>
-                </div>
-                <Badge className="bg-questGreen-500 text-white">
-                  +{quest.xp} XP
-                </Badge>
+        <TabsContent value="overview" className="space-y-6">
+          {/* Recent Quests */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <span>📋</span>
+                Letzte Quests
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3">
+                {recentQuests.map((quest, index) => (
+                  <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                    <div>
+                      <div className="font-semibold">{quest.name}</div>
+                      <div className="text-sm text-gray-600">vor {quest.date}</div>
+                    </div>
+                    <Badge className="bg-questGreen-500 text-white">
+                      +{quest.xp} XP
+                    </Badge>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
+            </CardContent>
+          </Card>
 
-      {/* Action Buttons */}
-      <div className="grid grid-cols-2 gap-4">
-        <Button variant="outline" className="border-questGreen-300 text-questGreen-700 hover:bg-questGreen-50">
-          Freunde finden 👥
-        </Button>
-        <Button variant="outline" className="border-questTurquoise-300 text-questTurquoise-700 hover:bg-questTurquoise-50">
-          Einstellungen ⚙️
-        </Button>
-      </div>
+          {/* Action Buttons */}
+          <div className="grid grid-cols-2 gap-4">
+            <Button variant="outline" className="border-questGreen-300 text-questGreen-700 hover:bg-questGreen-50">
+              Freunde finden 👥
+            </Button>
+            <Button variant="outline" className="border-questTurquoise-300 text-questTurquoise-700 hover:bg-questTurquoise-50">
+              Einstellungen ⚙️
+            </Button>
+          </div>
+        </TabsContent>
+
+        <TabsContent value="rewards">
+          <RewardSystem userXP={userStats.xp} completedQuests={userStats.completedQuests} />
+        </TabsContent>
+
+        <TabsContent value="achievements" className="space-y-6">
+          {/* Achievements */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <span>🏆</span>
+                Errungenschaften
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-2 gap-3">
+                {userStats.achievements.map((achievement, index) => (
+                  <div key={index} className="flex items-center gap-3 p-3 bg-questGreen-50 rounded-lg border border-questGreen-200">
+                    <div className="text-2xl">🎖️</div>
+                    <div>
+                      <div className="font-semibold text-sm text-questGreen-800">{achievement}</div>
+                      <div className="text-xs text-questGreen-600">Erhalten</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+      </Tabs>
     </div>
   );
 };
