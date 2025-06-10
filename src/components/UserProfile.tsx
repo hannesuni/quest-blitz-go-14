@@ -111,7 +111,11 @@ const UserProfile = () => {
 
           {/* Action Buttons */}
           <div className="grid grid-cols-2 gap-4">
-            <Button variant="outline" className="border-questGreen-300 text-questGreen-700 hover:bg-questGreen-50">
+            <Button 
+              variant="outline" 
+              className="border-blue-300 text-blue-700 hover:bg-blue-50"
+              onClick={() => window.location.href = '/?page=social'}
+            >
               Freunde finden 👥
             </Button>
             <Button variant="outline" className="border-questTurquoise-300 text-questTurquoise-700 hover:bg-questTurquoise-50">

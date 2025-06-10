@@ -1,10 +1,10 @@
-
 import React, { useState } from 'react';
 import QuestCard from '@/components/QuestCard';
 import QuestGenerator from '@/components/QuestGenerator';
 import LocationBrowser from '@/components/LocationBrowser';
 import UserProfile from '@/components/UserProfile';
 import CommunityFeed from '@/components/CommunityFeed';
+import Social from '@/pages/Social';
 import Navigation from '@/components/Navigation';
 
 const Index = () => {
@@ -18,6 +18,8 @@ const Index = () => {
         return <LocationBrowser />;
       case 'community':
         return <CommunityFeed />;
+      case 'social':
+        return <Social />;
       case 'profile':
         return <UserProfile />;
       default:
@@ -63,7 +65,7 @@ const HomePage = ({ onNavigate }: { onNavigate: (page: string) => void }) => {
       </div>
 
       {/* Main Action Cards */}
-      <div className="grid gap-6 md:grid-cols-1 lg:grid-cols-3">
+      <div className="grid gap-6 md:grid-cols-1 lg:grid-cols-4">
         <QuestCard
           title="Spontane Quest"
           description="Lass dir ein zufälliges Abenteuer in deiner Nähe generieren und sammle XP!"
@@ -81,12 +83,45 @@ const HomePage = ({ onNavigate }: { onNavigate: (page: string) => void }) => {
         />
         
         <QuestCard
+          title="Social Hub"
+          description="Finde Freunde, plane gemeinsame Events und entdeckt zusammen neue Abenteuer!"
+          icon="👥"
+          gradient="bg-gradient-to-br from-blue-400 to-blue-600"
+          onClick={() => onNavigate('social')}
+        />
+        
+        <QuestCard
           title="Community"
           description="Schau dir an, was andere erleben und teile deine eigenen Abenteuer!"
-          icon="👥"
+          icon="📱"
           gradient="bg-gradient-to-br from-purple-400 to-purple-600"
           onClick={() => onNavigate('community')}
         />
+      </div>
+
+      {/* Quick Actions */}
+      <div className="text-center space-y-4">
+        <h3 className="text-lg font-semibold text-gray-700">Quick Start</h3>
+        <div className="flex gap-3 justify-center flex-wrap">
+          <button 
+            onClick={() => onNavigate('quest')}
+            className="px-6 py-3 bg-quest-gradient text-white rounded-full font-semibold hover:scale-105 transition-all duration-300 shadow-lg"
+          >
+            🎯 Quest starten
+          </button>
+          <button 
+            onClick={() => onNavigate('social')}
+            className="px-6 py-3 bg-blue-500 text-white rounded-full font-semibold hover:scale-105 transition-all duration-300 shadow-lg"
+          >
+            👥 Freunde finden
+          </button>
+          <button 
+            onClick={() => onNavigate('profile')}
+            className="px-6 py-3 bg-white text-questGreen-600 border-2 border-questGreen-300 rounded-full font-semibold hover:scale-105 transition-all duration-300"
+          >
+            👤 Mein Profil
+          </button>
+        </div>
       </div>
 
       {/* Stats Overview */}
@@ -107,25 +142,6 @@ const HomePage = ({ onNavigate }: { onNavigate: (page: string) => void }) => {
             <div className="text-2xl font-bold text-purple-600">89</div>
             <div className="text-sm text-gray-600">Partner Locations</div>
           </div>
-        </div>
-      </div>
-
-      {/* Quick Actions */}
-      <div className="text-center space-y-4">
-        <h3 className="text-lg font-semibold text-gray-700">Quick Start</h3>
-        <div className="flex gap-3 justify-center flex-wrap">
-          <button 
-            onClick={() => onNavigate('quest')}
-            className="px-6 py-3 bg-quest-gradient text-white rounded-full font-semibold hover:scale-105 transition-all duration-300 shadow-lg"
-          >
-            🎯 Quest starten
-          </button>
-          <button 
-            onClick={() => onNavigate('profile')}
-            className="px-6 py-3 bg-white text-questGreen-600 border-2 border-questGreen-300 rounded-full font-semibold hover:scale-105 transition-all duration-300"
-          >
-            👤 Mein Profil
-          </button>
         </div>
       </div>
     </div>
