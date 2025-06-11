@@ -1,9 +1,10 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import QuestDetails from '@/pages/QuestDetails';
+import { useUser } from '@/contexts/UserContext';
 
 interface Quest {
   id: string;
@@ -13,6 +14,7 @@ interface Quest {
   xp: number;
   tasks: string[];
   location: string;
+  estimatedTime: string;
 }
 
 interface Friend {
@@ -27,6 +29,9 @@ const QuestGenerator = () => {
   const [isGenerating, setIsGenerating] = useState(false);
   const [isInviteFriendsOpen, setIsInviteFriendsOpen] = useState(false);
   const [selectedFriends, setSelectedFriends] = useState<string[]>([]);
+  const [activeQuest, setActiveQuest] = useState<Quest | null>(null);
+  
+  const { addXP, completeQuest } = useUser();
 
   const friends: Friend[] = [
     { id: '1', username: 'MaxAdventurer', avatar: '🦄', status: 'online' },
@@ -47,7 +52,8 @@ const QuestGenerator = () => {
         'Mache ein Foto vor einem historischen Gebäude',
         'Finde einen Laden, der seit über 50 Jahren existiert'
       ],
-      location: 'Innenstadt'
+      location: 'Innenstadt',
+      estimatedTime: '2-3 Stunden'
     },
     {
       id: '2',
@@ -61,7 +67,8 @@ const QuestGenerator = () => {
         'Lass dir von einer Person eine lokale Empfehlung geben',
         'Tausche Kontaktdaten mit einer neuen Bekanntschaft'
       ],
-      location: 'Café oder Park'
+      location: 'Café oder Park',
+      estimatedTime: '3-4 Stunden'
     },
     {
       id: '3',
@@ -75,7 +82,8 @@ const QuestGenerator = () => {
         'Finde eine Live-Musik-Location',
         'Sammle Visitenkarten von 2 interessanten Orten'
       ],
-      location: 'Ausgehviertel'
+      location: 'Ausgehviertel',
+      estimatedTime: '4-6 Stunden'
     }
   ];
 
@@ -87,6 +95,23 @@ const QuestGenerator = () => {
       setCurrentQuest(randomQuest);
       setIsGenerating(false);
     }, 2000);
+  };
+
+  const startQuest = () => {
+    if (currentQuest) {
+      setActiveQuest(currentQuest);
+    }
+  };
+
+  const handleQuestComplete = (xpGained: number) => {
+    addXP(xpGained);
+    completeQuest();
+    console.log(`Quest abgeschlossen! +${xpGained} XP erhalten.`);
+  };
+
+  const handleBackToGenerator = () => {
+    setActiveQuest(null);
+    setCurrentQuest(null);
   };
 
   const getDifficultyColor = (difficulty: string) => {
@@ -111,6 +136,17 @@ const QuestGenerator = () => {
     setIsInviteFriendsOpen(false);
     setSelectedFriends([]);
   };
+
+  // If there's an active quest, show the quest details page
+  if (activeQuest) {
+    return (
+      <QuestDetails
+        quest={activeQuest}
+        onComplete={handleQuestComplete}
+        onBack={handleBackToGenerator}
+      />
+    );
+  }
 
   return (
     <div className="space-y-6">
@@ -151,9 +187,15 @@ const QuestGenerator = () => {
               </div>
             </div>
             <p className="text-muted-foreground">{currentQuest.description}</p>
-            <div className="flex items-center gap-2 text-sm text-questGreen-700">
-              <span>📍</span>
-              <span>{currentQuest.location}</span>
+            <div className="flex items-center gap-4 text-sm text-questGreen-700">
+              <div className="flex items-center gap-2">
+                <span>📍</span>
+                <span>{currentQuest.location}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span>⏱️</span>
+                <span>{currentQuest.estimatedTime}</span>
+              </div>
             </div>
           </CardHeader>
           
@@ -171,7 +213,10 @@ const QuestGenerator = () => {
             </ul>
             
             <div className="flex gap-3">
-              <Button className="flex-1 bg-quest-gradient hover:bg-quest-gradient-hover text-white">
+              <Button 
+                onClick={startQuest}
+                className="flex-1 bg-quest-gradient hover:bg-quest-gradient-hover text-white"
+              >
                 Quest starten 🚀
               </Button>
               <Dialog open={isInviteFriendsOpen} onOpenChange={setIsInviteFriendsOpen}>

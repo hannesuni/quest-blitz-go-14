@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import RewardSystem from './RewardSystem';
+import { useUser } from '@/contexts/UserContext';
 
 interface UserStats {
   level: number;
@@ -17,15 +18,7 @@ interface UserStats {
 }
 
 const UserProfile = () => {
-  const userStats: UserStats = {
-    level: 7,
-    xp: 2450,
-    xpToNext: 550,
-    completedQuests: 23,
-    totalLocationsVisited: 15,
-    achievements: ['Stadtentdecker', 'Social Butterfly', 'Nachtfalter', 'First Quest'],
-    rank: 'Abenteurer'
-  };
+  const { userStats } = useUser();
 
   const xpProgress = (userStats.xp / (userStats.xp + userStats.xpToNext)) * 100;
 
