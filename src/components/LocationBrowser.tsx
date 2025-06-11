@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
+import { useNavigate } from 'react-router-dom';
 
 interface Location {
   id: string;
@@ -19,6 +20,7 @@ interface Location {
 }
 
 const LocationBrowser = () => {
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedFilter, setSelectedFilter] = useState('Alle');
 
@@ -69,6 +71,10 @@ const LocationBrowser = () => {
     const matchesFilter = selectedFilter === 'Alle' || location.type === selectedFilter;
     return matchesSearch && matchesFilter;
   });
+
+  const handleBookLocation = (locationId: string) => {
+    navigate(`/location-booking?id=${locationId}`);
+  };
 
   return (
     <div className="space-y-6">
@@ -165,10 +171,17 @@ const LocationBrowser = () => {
                       : 'bg-gray-400 cursor-not-allowed'
                   }`}
                   disabled={!location.available}
+                  onClick={() => location.available && handleBookLocation(location.id)}
                 >
                   {location.available ? 'Buchen 🎯' : 'Ausgebucht'}
                 </Button>
-                <Button variant="outline" size="sm" className="border-questGreen-300">
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  className="border-questGreen-300"
+                  onClick={() => handleBookLocation(location.id)}
+                  disabled={!location.available}
+                >
                   ℹ️
                 </Button>
               </div>
