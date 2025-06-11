@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -39,6 +38,18 @@ const LocationBrowser = () => {
     },
     {
       id: '2',
+      name: 'Mystery Mansion',
+      type: 'Escape Room',
+      address: 'Rätselgasse 89, München',
+      price: 35,
+      rating: 4.9,
+      available: true,
+      image: '🏚️',
+      description: 'Gruselige Horror-Escape Rooms für Adrenalinjunkies. Nur für starke Nerven!',
+      amenities: ['Profi-Schauspieler', 'Spezialeffekte', 'Getränke']
+    },
+    {
+      id: '3',
       name: 'Party Basement',
       type: 'Partykeller',
       address: 'Kellerstraße 45, München',
@@ -50,20 +61,116 @@ const LocationBrowser = () => {
       amenities: ['Sound-System', 'Karaoke', 'Bar', 'Lichtshow']
     },
     {
-      id: '3',
+      id: '4',
+      name: 'VIP Lounge 360',
+      type: 'Partykeller',
+      address: 'Luxusstraße 12, München',
+      price: 250,
+      rating: 4.7,
+      available: false,
+      image: '🥂',
+      description: 'Exklusive VIP-Lounge mit Champagner-Service und persönlichem Butler.',
+      amenities: ['Butler-Service', 'Premium-Bar', 'Tanzfläche', 'Fotograf']
+    },
+    {
+      id: '5',
       name: 'Craft Beer Garden',
       type: 'Bar',
       address: 'Bierstraße 78, München',
       price: 45,
       rating: 4.7,
-      available: false,
+      available: true,
       image: '🍺',
       description: 'Gemütliche Craft Beer Bar mit über 50 verschiedenen Bieren. Live-Musik am Wochenende.',
       amenities: ['50+ Biere', 'Live-Musik', 'Snacks', 'Terrasse']
+    },
+    {
+      id: '6',
+      name: 'Rooftop Sky Bar',
+      type: 'Bar',
+      address: 'Hochhausweg 22, München',
+      price: 65,
+      rating: 4.8,
+      available: true,
+      image: '🌃',
+      description: 'Stylische Rooftop-Bar mit Panoramablick über München. Cocktails vom Profi.',
+      amenities: ['Panoramablick', 'Cocktail-Bar', 'Heizstrahler', 'DJ']
+    },
+    {
+      id: '7',
+      name: 'Pulse Nightclub',
+      type: 'Club',
+      address: 'Tanzstraße 15, München',
+      price: 25,
+      rating: 4.5,
+      available: true,
+      image: '🕺',
+      description: 'Angesagte Disco mit drei Floors und verschiedenen Musikrichtungen.',
+      amenities: ['3 Dancefloors', 'Top-DJs', 'VIP-Bereich', 'Garderobe']
+    },
+    {
+      id: '8',
+      name: 'Underground Club',
+      type: 'Club',
+      address: 'Kellerclub 8, München',
+      price: 30,
+      rating: 4.6,
+      available: true,
+      image: '🎵',
+      description: 'Techno-Club mit industriellem Ambiente und erstklassiger Soundanlage.',
+      amenities: ['Techno-Sound', 'Nebelmaschine', 'Chill-Out-Area', 'Late-Night']
+    },
+    {
+      id: '9',
+      name: 'Bowling Arena',
+      type: 'Sport',
+      address: 'Sportplatz 33, München',
+      price: 20,
+      rating: 4.4,
+      available: true,
+      image: '🎳',
+      description: 'Moderne Bowling-Bahn mit Neon-Licht und Cocktail-Service.',
+      amenities: ['8 Bahnen', 'Neon-Bowling', 'Snacks', 'Billard']
+    },
+    {
+      id: '10',
+      name: 'Lasertag Arena',
+      type: 'Sport',
+      address: 'Actionstraße 99, München',
+      price: 18,
+      rating: 4.7,
+      available: true,
+      image: '🔫',
+      description: 'Futuristische Lasertag-Arena mit mehreren Leveln und Hindernissen.',
+      amenities: ['Multi-Level', 'Spezialeffekte', 'Team-Modi', 'Umkleiden']
+    },
+    {
+      id: '11',
+      name: 'La Bella Vista',
+      type: 'Restaurant',
+      address: 'Genussmeile 7, München',
+      price: 85,
+      rating: 4.8,
+      available: true,
+      image: '🍝',
+      description: 'Authentisches italienisches Restaurant mit romantischer Atmosphäre.',
+      amenities: ['Candlelight', 'Live-Piano', 'Weinverkostung', 'Terrasse']
+    },
+    {
+      id: '12',
+      name: 'Sakura Sushi',
+      type: 'Restaurant',
+      address: 'Asienplatz 14, München',
+      price: 70,
+      rating: 4.6,
+      available: false,
+      image: '🍣',
+      description: 'Hochwertiges Sushi-Restaurant mit Teppanyaki-Show und frischestem Fisch.',
+      amenities: ['Teppanyaki-Show', 'Frischer Fisch', 'Sake-Bar', 'Tatami-Räume']
     }
   ];
 
-  const filters = ['Alle', 'Escape Room', 'Partykeller', 'Bar', 'Club'];
+  const filters = ['Alle', 'Escape Room', 'Partykeller', 'Bar', 'Club', 'Sport', 'Restaurant'];
 
   const filteredLocations = sampleLocations.filter(location => {
     const matchesSearch = location.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
