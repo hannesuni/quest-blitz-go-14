@@ -25,7 +25,6 @@ const App = () => (
             <Route path="/quest/:questId" element={<QuestDetails />} />
             <Route path="/location-booking" element={<LocationBooking />} />
             <Route path="/booking-confirmation" element={<BookingConfirmation />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

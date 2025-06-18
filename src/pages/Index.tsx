@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import QuestCard from '@/components/QuestCard';
 import QuestGenerator from '@/components/QuestGenerator';
@@ -44,7 +45,7 @@ const HomePage = ({ onNavigate }: { onNavigate: (page: string) => void }) => {
       <div className="text-center space-y-4 py-8">
         <div className="text-6xl animate-bounce-gentle">🎯</div>
         <h1 className="text-4xl font-bold bg-quest-gradient bg-clip-text text-transparent">
-          QuestDealer
+          Active
         </h1>
         <p className="text-xl text-gray-600 max-w-md mx-auto leading-relaxed">
           Dein Abend. Dein Abenteuer.
@@ -127,7 +128,7 @@ const HomePage = ({ onNavigate }: { onNavigate: (page: string) => void }) => {
       {/* Stats Overview */}
       <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
         <h3 className="text-xl font-bold text-center mb-6 text-gray-800">
-          QuestDealer Community
+          Active Community
         </h3>
         <div className="grid grid-cols-3 gap-4 text-center">
           <div>
