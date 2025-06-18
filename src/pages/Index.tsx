@@ -60,7 +60,7 @@ const HomePage = ({ onNavigate }: { onNavigate: (page: string) => void }) => {
             Bereit für dein nächstes Abenteuer?
           </h2>
           <p className="text-gray-600">
-            Entdecke spontane Quests, finde coole Locations oder tauche in die Community ein!
+            Entdecke spontane Abenteuer, finde coole Locations oder tauche in die Community ein!
           </p>
         </div>
       </div>
@@ -68,7 +68,7 @@ const HomePage = ({ onNavigate }: { onNavigate: (page: string) => void }) => {
       {/* Main Action Cards */}
       <div className="grid gap-6 md:grid-cols-1 lg:grid-cols-4">
         <QuestCard
-          title="Spontane Quest"
+          title="Spontanes Abenteuer"
           description="Lass dir ein zufälliges Abenteuer in deiner Nähe generieren und sammle XP!"
           icon="🎲"
           gradient="bg-gradient-to-br from-questGreen-400 to-questGreen-600"
@@ -108,7 +108,7 @@ const HomePage = ({ onNavigate }: { onNavigate: (page: string) => void }) => {
             onClick={() => onNavigate('quest')}
             className="px-6 py-3 bg-quest-gradient text-white rounded-full font-semibold hover:scale-105 transition-all duration-300 shadow-lg"
           >
-            🎯 Quest starten
+            🎯 Abenteuer starten
           </button>
           <button 
             onClick={() => onNavigate('social')}
@@ -133,11 +133,11 @@ const HomePage = ({ onNavigate }: { onNavigate: (page: string) => void }) => {
         <div className="grid grid-cols-3 gap-4 text-center">
           <div>
             <div className="text-2xl font-bold text-questGreen-600">1,234</div>
-            <div className="text-sm text-gray-600">Aktive Quester</div>
+            <div className="text-sm text-gray-600">Aktive Abenteurer</div>
           </div>
           <div>
             <div className="text-2xl font-bold text-questTurquoise-600">567</div>
-            <div className="text-sm text-gray-600">Quests heute</div>
+            <div className="text-sm text-gray-600">Abenteuer heute</div>
           </div>
           <div>
             <div className="text-2xl font-bold text-purple-600">89</div>

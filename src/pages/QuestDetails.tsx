@@ -75,7 +75,7 @@ const QuestDetails = ({ quest, onComplete, onBack }: QuestDetailsProps) => {
         <Card className="border-questGreen-200 bg-white/80 backdrop-blur-sm">
           <CardHeader>
             <div className="flex items-center justify-between">
-              <CardTitle className="text-lg">Quest Details</CardTitle>
+              <CardTitle className="text-lg">Abenteuer Details</CardTitle>
               <div className="flex gap-2">
                 <Badge className={`${getDifficultyColor(quest.difficulty)} text-white`}>
                   {quest.difficulty}
@@ -165,13 +165,13 @@ const QuestDetails = ({ quest, onComplete, onBack }: QuestDetailsProps) => {
                   Alle Aufgaben erledigt!
                 </h3>
                 <p className="text-gray-600">
-                  Du hast alle Aufgaben dieser Quest abgeschlossen. Klicke auf "Quest abschließen" um deine XP zu erhalten!
+                  Du hast alle Aufgaben dieses Abenteuers abgeschlossen. Klicke auf "Abenteuer abschließen" um deine XP zu erhalten!
                 </p>
                 <Button
                   onClick={completeQuest}
                   className="bg-quest-gradient text-white px-8 py-3 text-lg font-semibold"
                 >
-                  Quest abschließen (+{quest.xp} XP)
+                  Abenteuer abschließen (+{quest.xp} XP)
                 </Button>
               </div>
             </CardContent>
@@ -185,7 +185,7 @@ const QuestDetails = ({ quest, onComplete, onBack }: QuestDetailsProps) => {
               <div className="space-y-4">
                 <div className="text-6xl animate-bounce">🏆</div>
                 <h3 className="text-2xl font-bold text-questGreen-800">
-                  Quest abgeschlossen!
+                  Abenteuer abgeschlossen!
                 </h3>
                 <p className="text-lg text-questGreen-700">
                   +{quest.xp} XP erhalten!

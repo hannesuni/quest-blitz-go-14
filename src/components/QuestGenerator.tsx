@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -106,7 +107,7 @@ const QuestGenerator = () => {
   const handleQuestComplete = (xpGained: number) => {
     addXP(xpGained);
     completeQuest();
-    console.log(`Quest abgeschlossen! +${xpGained} XP erhalten.`);
+    console.log(`Abenteuer abgeschlossen! +${xpGained} XP erhalten.`);
   };
 
   const handleBackToGenerator = () => {
@@ -151,7 +152,7 @@ const QuestGenerator = () => {
   return (
     <div className="space-y-6">
       <div className="text-center">
-        <h2 className="text-2xl font-bold mb-4">Quest Generator</h2>
+        <h2 className="text-2xl font-bold mb-4">Abenteuer Generator</h2>
         <p className="text-muted-foreground mb-6">
           Lass dir ein spontanes Abenteuer in deiner Nähe generieren!
         </p>
@@ -164,10 +165,10 @@ const QuestGenerator = () => {
           {isGenerating ? (
             <>
               <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
-              Generiere Quest...
+              Generiere Abenteuer...
             </>
           ) : (
-            '🎲 Neue Quest generieren'
+            '🎲 Neues Abenteuer generieren'
           )}
         </Button>
       </div>
@@ -217,7 +218,7 @@ const QuestGenerator = () => {
                 onClick={startQuest}
                 className="flex-1 bg-quest-gradient hover:bg-quest-gradient-hover text-white"
               >
-                Quest starten 🚀
+                Abenteuer starten 🚀
               </Button>
               <Dialog open={isInviteFriendsOpen} onOpenChange={setIsInviteFriendsOpen}>
                 <DialogTrigger asChild>
@@ -227,7 +228,7 @@ const QuestGenerator = () => {
                 </DialogTrigger>
                 <DialogContent className="max-w-md">
                   <DialogHeader>
-                    <DialogTitle>Freunde zur Quest einladen</DialogTitle>
+                    <DialogTitle>Freunde zum Abenteuer einladen</DialogTitle>
                   </DialogHeader>
                   <div className="space-y-4">
                     <p className="text-sm text-gray-600">
@@ -249,7 +250,7 @@ const QuestGenerator = () => {
                             <div className="font-semibold">{friend.username}</div>
                             <div className="text-sm text-gray-600">
                               {friend.status === 'online' ? '🟢 Online' : 
-                               friend.status === 'in-quest' ? '🟡 In Quest' : '⚫ Offline'}
+                               friend.status === 'in-quest' ? '🟡 Im Abenteuer' : '⚫ Offline'}
                             </div>
                           </div>
                           {selectedFriends.includes(friend.id) && (

@@ -38,7 +38,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
     xpToNext: 550,
     completedQuests: 23,
     totalLocationsVisited: 15,
-    achievements: ['Stadtentdecker', 'Social Butterfly', 'Nachtfalter', 'First Quest'],
+    achievements: ['Stadtentdecker', 'Social Butterfly', 'Nachtfalter', 'Erstes Abenteuer'],
     rank: 'Abenteurer'
   });
 
