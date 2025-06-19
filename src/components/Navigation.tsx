@@ -10,7 +10,7 @@ interface NavigationProps {
 const Navigation = ({ currentPage, onNavigate }: NavigationProps) => {
   const navItems = [
     { id: 'home', label: 'Home', icon: '🏠' },
-    { id: 'quest', label: 'Quest', icon: '🎯' },
+    { id: 'quest', label: 'Abenteuer', icon: '🎯' },
     { id: 'locations', label: 'Locations', icon: '📍' },
     { id: 'community', label: 'Community', icon: '👥' },
     { id: 'profile', label: 'Profil', icon: '👤' }
